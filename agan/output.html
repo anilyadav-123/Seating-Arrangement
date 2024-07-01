@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Seating Arrangement - Output</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url(OIG.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 20px;
+        }
+        #output {
+            color: #fff;
+         padding-left: 300px;
+          display: block;
+          align-items: center;
+          width: 100%;
+          margin-bottom: 10px; /* You can adjust the margin as needed */
+        }
+        .seating-table {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(235, 227, 227, 0);
+            border-collapse: collapse;
+            margin-top: 20px;
+            width: 100%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .seating-table td {
+            align-items: center;
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .class-heading {
+            background-color: #3498db;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .class-container {
+            margin-bottom: 20px;
+           align-items: center;
+           justify-content: space-between;
+           display: inline-block;
+           box-sizing: border-box;
+        }
+   
+    </style>
+</head>
+<body>
+
+    <div id="output">
+        <!-- Output content will be displayed here -->
+    </div>
+
+    <script>
+        // Parse URL parameters to get input values
+        var urlParams = new URLSearchParams(window.location.search);
+        var benches = parseInt(urlParams.get('benches'));
+        var studentsPerBench = parseInt(urlParams.get('studentsPerBench'));
+        var classes = parseInt(urlParams.get('classes'));
+        var students = parseInt(urlParams.get('students'));
+
+        // You can use the retrieved input values to generate seating arrangement
+        var outputDiv = document.getElementById("output");
+        outputDiv.innerHTML = "<h1>Exam Seating Arrangement</h1>";
+
+        var totalSeats = benches * studentsPerBench * classes;
+        if (totalSeats >= students) {
+            var remainingSeats = totalSeats - students;
+
+            outputDiv.innerHTML += "<div><p>Total Seats in Each Class: " + benches + " Benches, " + studentsPerBench + " Students/Bench</p></div>";
+            outputDiv.innerHTML += "<div><p>Total Classes: " + classes + "</p></div>";
+            outputDiv.innerHTML += "<div><p>Total Seats: " + totalSeats + "</p></div>";
+            outputDiv.innerHTML += "<div><p>Total Students: " + students + "</p></div>";
+            outputDiv.innerHTML += "<div><p>Remaining Seats: " + remainingSeats + "</p></div>";
+            var rollNumber = 1; // Initialize global roll number counter
+
+            for (var k = 1; k <= classes; k++) {
+                var tableHtml = "<div class='class-container'>";
+                tableHtml += "<table class='seating-table' border='1'>";
+                tableHtml += "<tr class='class-heading'><td colspan='" + benches * studentsPerBench + "'>Class " + k + " Seating:</td></tr>";
+                for (var i = 1; i <= benches; i++) {
+                    tableHtml += "<tr>";
+                    for (var j = 1; j <= studentsPerBench; j++) {
+                        if (rollNumber <= students) {
+                            tableHtml += "<td>Roll No " + rollNumber + "</td>";
+                            rollNumber++;
+                        } else {
+                            tableHtml += "<td>Empty</td>";
+                        }
+                    }
+                    tableHtml += "</tr>";
+                }
+                tableHtml += "</table>";
+                tableHtml += "</div>";
+                outputDiv.innerHTML += tableHtml;
+            }
+        } else {
+            outputDiv.innerHTML += "<p>Not enough seats for all students. Please adjust the number of benches or classes.</p>";
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            border: 1px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin-top:200px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url(OIG3.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    
+        #loginForm {
+            height:50px;
+            color:white;
+            width: 50%;
+            margin-top: 100px;
+            align-items: center;
+            background-color:rgba(235, 227, 227, 0);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            
+        }
+        #username{
+            height: 3vh;
+        }
+        #password{
+            height: 3vh;
+        }
+        #inputUsername{
+        
+            width:200px;
+            padding:12px 30px 12px 30px ;
+            border: none;
+            border-radius: 5px;
+        }
+        #inputPassword{
+            margin-top: 10px;
+            width:200px;
+            padding:12px 30px 12px 30px  ;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            padding: 8px 15px 8px 15px;
+            background-color: #41c6dd;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 20%;
+            box-sizing: border-box;
+            font-size: 12px;
+            margin-left: 100px;
+            margin-top: 10px;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <div id="input">
+        <form id="loginForm" onsubmit="return checkCredentials()">
+           <table>
+              <tr>
+                <th>USERNAME:</th>
+                <td><input type="text" id="inputUsername" placeholder="enter Username" name="username" value=""></td>
+              </tr>
+              <tr>
+                <th>PASSWORD:</th>
+                <td><input type="password" id="inputPassword" placeholder="enter Password" name="password" value=""></td>
+              </tr>
+              <tr>
+                <th colspan="2"><button type="submit">    SUBMIT</button></th>
+              </tr>
+            </table>
+        </form>
+    </div>
+<script>
+    const correctUsername = "anilyadav@1234";
+    const correctPassword = "anilyadav@123";
+
+    function checkCredentials() {
+        const enteredUsername = document.getElementById("inputUsername").value;
+        const enteredPassword = document.getElementById("inputPassword").value;
+
+        if (enteredUsername === correctUsername && enteredPassword === correctPassword) {
+            window.location.href = "arrange.html";
+            return false; // Prevents form submission
+        } else {
+            alert("Incorrect username or password. Please try again.");
+            return false; // Prevents form submission
+        }
+    }
+</script>
+
+
+</body>
+</html>

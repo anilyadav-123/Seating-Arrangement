@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Seating Arrangement - Input</title>
+    <style>
+        body {
+            background-image: url(OIG.femJFvxomJbQ.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #input-form {
+            background-color: rgba(235, 227, 227, 0);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 100px;
+            padding: 20px;
+            margin-top:50px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        input {
+            padding: 12px;
+            margin: 10px;
+            width: calc(100% - 20px);
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="input-form">
+        <h2 style="margin-bottom: 20px;">Enter Information</h2>
+        <label for="benches">Number of Benches in Each Class:</label>
+        <input type="text" id="benches" name="benches" required>
+
+        <label for="studentsPerBench">Number of Students in Each Bench:</label>
+        <input type="text" id="studentsPerBench" name="studentsPerBench" required>
+
+        <label for="classes">Number of Classes:</label>
+        <input type="text" id="classes" name="classes" required>
+
+        <label for="students">Total Number of Students:</label>
+        <input type="text" id="students" name="students" required>
+
+        <button onclick="submitForm()">Submit</button>
+    </div>
+
+    <script>
+        function submitForm() {
+            var benches = document.getElementById("benches").value;
+            var studentsPerBench = document.getElementById("studentsPerBench").value;
+            var classes = document.getElementById("classes").value;
+            var students = document.getElementById("students").value;
+
+            // Pass the input values to the output page using URL parameters
+            window.location.href = "output.html?benches=" + encodeURIComponent(benches) +"&studentsPerBench=" + encodeURIComponent(studentsPerBench) +"&classes=" + encodeURIComponent(classes) +"&students=" + encodeURIComponent(students);
+        }
+    </script>
+
+</body>
+</html>
